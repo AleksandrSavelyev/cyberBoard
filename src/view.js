@@ -6,7 +6,9 @@ class View {
         this.header = null;
         this.allTasks = null;
         this.taskCard = null;
-        this.taskAddButton = null;
+        this.ListName = null;
+        this.listInput = null;
+        this.addListButton = null;
         this.boardContainer = null;
         this.addColumnbButton = null;
         this.taskHeder = null;
@@ -42,34 +44,25 @@ class View {
         this.root.append(this.boardContainer);
     }
 
-    createTaskContainer = () => {
+    createListContainer = () => {
         this.taskCard = this.createDiv({
             className: 'Task__Card',
         });
-        const label = this.createLabel({
-            className: 'TaskC',
-            labelText: 'TaskCard',
-        });
-        const textInput = this.createInput({
+        this.listInput = this.createInput({
             id: 'card',
             className: 'Taskcard',
-            placeholder: 'Input new task',
+            placeholder: 'Enter list title...',
         });
-        this.taskAddButton = this.createButton({
+        this.addListButton = this.createButton({
             id: 'addTask',
             className: 'Add__Task',
-            buttonText: '+ Add new task',
+            buttonText: 'Add list',
         });
+        
+        this.addListButton.addEventListener("click", this.createNewList);
 
-        // this.taskHeder = this.taskHeder({
-        //     id: 'taskHeder',
-        //     className: 'Task__heder',
-            
-        // });
-
-        this.taskCard.append(label);
-        this.taskCard.append(textInput);
-        this.taskCard.append(this.taskAddButton);
+        this.taskCard.append(this.listInput);
+        this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
     }
 
@@ -113,14 +106,26 @@ class View {
         return input;
     }
 
-    createLabel = props => {
-        const label = document.createElement('label');
+    createSpan = props => {
+        const span = document.createElement('span');
 
-        props.className && (label.className = props.className);
-        props.labelText && (label.innerText = props.labelText);
-        props.id && (lable.id = props.id);
+        props.className && (span.className = props.className);
+        props.spanText && (span.innerText = props.spanText);
+        props.id && (span.id = props.id);
 
-        return label;
+        return span;
+    }
+
+    createNewList = () => {
+        let inputText = this.listInput.value;
+        this.ListName = this.createSpan({
+            id: 'list_name',
+            className: 'List__Name',
+            spanText: inputText,
+        });
+
+        this.taskCard.append(this.ListName);
+        this.listInput.style.display = "none";
     }
 
     taskHeder = props => {
