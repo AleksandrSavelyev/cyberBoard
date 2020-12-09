@@ -121,6 +121,7 @@ class View {
     }
 
     createNewList = () => {
+        this.addListButton.style.display = "none";
         let inputText = this.listInput.value;
         this.listInput.style.display = "none";
         this.listName.innerHTML = inputText;
@@ -133,6 +134,7 @@ class View {
     changeListName = () => {
         this.listInput.style.display = "block";
         this.listName.style.display = "none";
+        this.addListButton.style.display = "block";
     }
 
 }
