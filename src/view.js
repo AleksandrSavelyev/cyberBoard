@@ -6,7 +6,7 @@ class View {
         this.header = null;
         this.allTasks = null;
         this.taskCard = null;
-        this.ListName = null;
+        this.listName = null;
         this.listInput = null;
         this.addListButton = null;
         this.boardContainer = null;
@@ -53,6 +53,10 @@ class View {
             className: 'Taskcard',
             placeholder: 'Enter list title...',
         });
+        this.listName = this.createSpan({
+            id: 'list_name',
+            className: 'List__Name',
+        });
         this.addListButton = this.createButton({
             id: 'addTask',
             className: 'Add__Task',
@@ -62,6 +66,7 @@ class View {
         this.addListButton.addEventListener("click", this.createNewList);
 
         this.taskCard.append(this.listInput);
+        this.taskCard.append(this.listName);
         this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
     }
@@ -118,14 +123,17 @@ class View {
 
     createNewList = () => {
         let inputText = this.listInput.value;
-        this.ListName = this.createSpan({
-            id: 'list_name',
-            className: 'List__Name',
-            spanText: inputText,
-        });
-
-        this.taskCard.append(this.ListName);
         this.listInput.style.display = "none";
+        this.listName.innerHTML = inputText;
+        this.listName.style.display = "block";
+
+        this.listName.addEventListener("click", this.changeListName)
+        
+    }
+
+    changeListName = () => {
+        this.listInput.style.display = "block";
+        this.listName.style.display = "none";
     }
 
     taskHeder = props => {
