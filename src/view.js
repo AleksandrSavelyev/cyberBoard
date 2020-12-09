@@ -4,67 +4,66 @@ class View {
     constructor(){
         this.root = null;
         this.header = null;
+        this.allTasks = null;
         this.taskCard = null;
         this.taskAddButton = null;
-        this.taskConteiner = null;
+        this.boardContainer = null;
         this.addColumnbButton = null;
 
-        this.init();
     }
     
     init = () => {
         this.root = document.getElementById('root');
-        const container = this.createDiv({
+        this.boardContainer = this.createDiv({
             className: 'Container',
+        });
+        this.allTasks = this.createDiv({
+            className: 'Tasks',
         });
         const buttonKeeper = this.createDiv({
             className: 'Button__keeper',
         });
-        const wrapperButtons = this.createDiv({
-            className: 'Wrapper__buttons',
-        });
-        const tasks = this.createDiv({
-            className: 'Tasks',
-        });
-        const taskCard = this.createDiv({
-            className: 'Task__Card',
-        });
-        const addColumnbButton = this.createButton({
+        this.addColumnbButton = this.createButton({
             id: 'addTask2',
             className: 'Add__Task',
             buttonText: '+ Add another list',
         });
-        const addTask = this.createButton({
-            id: 'addTask',
-            className: 'Add__Task',
-            buttonText: '+ Add new task',
-        });
-        const header = this.createHeader({
+        this.header = this.createHeader({
             id: 'header',
             className: 'header',
             headerText: 'CYBER BOARD',
         });
 
-        const textInput = this.createInput({
-            id: 'card',
-            className: 'Taskcard',
-            placeholder: 'input new task',
-        });
+        buttonKeeper.append(this.addColumnbButton);
+        this.boardContainer.append(this.allTasks);
+        this.boardContainer.append(buttonKeeper);
+        this.root.append(this.header);
+        this.root.append(this.boardContainer);
+    }
 
+    createTaskContainer = () => {
+        this.taskCard = this.createDiv({
+            className: 'Task__Card',
+        });
         const label = this.createLabel({
             className: 'TaskC',
             labelText: 'TaskCard',
         });
+        const textInput = this.createInput({
+            id: 'card',
+            className: 'Taskcard',
+            placeholder: 'Input new task',
+        });
+        this.taskAddButton = this.createButton({
+            id: 'addTask',
+            className: 'Add__Task',
+            buttonText: '+ Add new task',
+        });
 
-        taskCard.append(label);
-        taskCard.append(textInput);
-        taskCard.append(addTask);
-        tasks.append(taskCard);
-        container.append(tasks);
-        container.append(addColumnbButton);
-        this.root.append(header);
-        this.root.append(container);
-
+        this.taskCard.append(label);
+        this.taskCard.append(textInput);
+        this.taskCard.append(this.taskAddButton);
+        this.allTasks.append(this.taskCard);
     }
 
     createDiv = props => {
@@ -116,6 +115,7 @@ class View {
 
         return label;
     }
+
 }
 
 export default View;
