@@ -1,4 +1,4 @@
-.Header {
+.header {
   display: flex;
   font-family: "Andika New Basic", sans-serif;
   color: aqua;
@@ -12,7 +12,7 @@
   height: 400px;
 }
 
-.Task__card {
+.Task__Card {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -30,7 +30,7 @@
   padding: 10px;
   margin: 10px;
 }
-.Add__task {
+.Add__Task {
   border: solid 1px red;
   margin: 10px;
   outline: none;
@@ -45,7 +45,7 @@
   z-index: 1;
 }
 
-.Add__task::before {
+.Add__Task::before {
   content: "";
   height: 60px;
   width: 80px;
@@ -60,7 +60,7 @@
   z-index: -1;
 }
 
-.Add__task:hover::before {
+.Add__Task:hover::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -73,7 +73,7 @@
   background-size: 500%;
   background-position: left;
 }
-.Add__task:hover {
+.Add__Task:hover {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -98,4 +98,8 @@
 
 .Button__keeper {
   border: 1px solid aqua;
+}
+
+.Tasks {
+  display: flex;
 }

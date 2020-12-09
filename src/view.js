@@ -9,7 +9,8 @@ class View {
         this.taskAddButton = null;
         this.boardContainer = null;
         this.addColumnbButton = null;
-
+        this.taskHeder = null;
+        this.inputText = null;        
     }
     
     init = () => {
@@ -59,6 +60,12 @@ class View {
             className: 'Add__Task',
             buttonText: '+ Add new task',
         });
+
+        // this.taskHeder = this.taskHeder({
+        //     id: 'taskHeder',
+        //     className: 'Task__heder',
+            
+        // });
 
         this.taskCard.append(label);
         this.taskCard.append(textInput);
@@ -116,6 +123,15 @@ class View {
         return label;
     }
 
+    taskHeder = props => {
+        const span = document.createElement('span');
+
+        props.className && (span.className = props.className);
+        props.spanText && (span.innerText = props.spanText);
+        props.id && (span.id = props.id);
+
+        return span;
+    }
 }
 
 export default View;
