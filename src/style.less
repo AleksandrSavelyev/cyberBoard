@@ -12,7 +12,7 @@
   height: 400px;
 }
 
-.TaskCard {
+.Task__card {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -30,7 +30,7 @@
   padding: 10px;
   margin: 10px;
 }
-.AddTask {
+.Add__task {
   border: solid 1px red;
   margin: 10px;
   outline: none;
@@ -45,7 +45,7 @@
   z-index: 1;
 }
 
-.AddTask::before {
+.Add__task::before {
   content: "";
   height: 60px;
   width: 80px;
@@ -60,7 +60,7 @@
   z-index: -1;
 }
 
-.AddTask:hover::before {
+.Add__task:hover::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -73,7 +73,7 @@
   background-size: 500%;
   background-position: left;
 }
-.AddTask:hover {
+.Add__task:hover {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -96,6 +96,6 @@
   }
 }
 
-.ButtonKeeper {
+.Button__keeper {
   border: 1px solid aqua;
 }
