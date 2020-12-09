@@ -125,6 +125,12 @@ class View {
 
         this.taskCard.append(this.ListName);
         this.listInput.style.display = "none";
+        this.ListName.addEventListener("click", this.changeListName);
+    }
+    
+    changeListName = () => {
+        this.listInput.style.display = "block";
+        this.ListName.style.display = "none";
     }
 
 }
