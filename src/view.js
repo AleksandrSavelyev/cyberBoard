@@ -1,6 +1,5 @@
 import "./style.less";
 
-class View {
     constructor(){
         this.root = null;
         this.header = null;
@@ -185,11 +184,7 @@ class View {
         this.addListButton.style.display = "none";
         this.canselBut.style.display = 'none';                 
     }
-
     addTaskCard = () => {
         const list = document.createElement('ul');
         this.taskCard.append(list);
     }
-}
-
-export default View;
