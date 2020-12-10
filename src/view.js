@@ -71,15 +71,21 @@ class View {
           spanText: '❎',
         });
         
-        
         this.addListButton.addEventListener("click", this.createNewList);
-        this.cancelButton.addEventListener("click", this.cancelAdd);
-
+        this.addButtonLogistics();
         this.taskCard.append(this.listInput);
         this.taskCard.append(this.cancelButton);
         this.taskCard.append(this.listName);
         this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
+    }
+
+    addButtonLogistics = () => {
+      let cancelButtons = document.getElementsByClassName("close");
+      for(let i = 0; i < cancelButtons.length; i++){
+        cancelButtons[i].addEventListener("click", this.cancelAdd);
+      }
+
     }
 
     createDiv = props => {
@@ -138,12 +144,11 @@ class View {
         this.listInput.style.display = "none";
         this.listName.innerHTML = inputText;
         this.listName.style.display = "block";
-        this.cancelButton.style.display = "none";
+        this.cancelButton.style.display = "block";
         this.oldListName = inputText;
         this.addColumnbButton.style.display = "block";
 
         this.listName.addEventListener("click", this.changeListName);
-        
     }
 
     changeListName = () => {
@@ -151,13 +156,12 @@ class View {
         this.cancelButton.style.display = "block";
         this.listName.style.display = "none";
         this.addListButton.style.display = "block";
-
         this.cancelButton.removeEventListener('click', this.cancelAdd)
         this.cancelButton.addEventListener('click', this.cancelChange);  
     }
     
     cancelAdd = () => {
-      this.taskCard.style.display = "none";
+      this.taskCard.remove();
       this.addColumnbButton.style.display = "block";
     }
 
