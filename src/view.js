@@ -1,3 +1,4 @@
+  
 import './style.less';
 
 class View {
@@ -8,6 +9,8 @@ class View {
         this.taskCard = null;
         this.listName = null;
         this.listInput = null;
+        this.oldListName = null;
+        this.cancelButton = null;
         this.addListButton = null;
         this.boardContainer = null;
         this.addColumnbButton = null;
@@ -35,7 +38,7 @@ class View {
             className: 'header',
             headerText: 'CYBER BOARD',
         });
-
+     
         buttonKeeper.append(this.addColumnbButton);
         this.boardContainer.append(this.allTasks);
         this.boardContainer.append(buttonKeeper);
@@ -61,10 +64,18 @@ class View {
             className: 'Add__Task',
             buttonText: 'Add list',
         });
+        this.cancelButton  = this.createSpan({
+          id: 'close',
+          className: 'close',
+          spanText: '❎',
+        });
+        
         
         this.addListButton.addEventListener("click", this.createNewList);
+        this.cancelButton.addEventListener("click", this.cancelAdd);
 
         this.taskCard.append(this.listInput);
+        this.taskCard.append(this.cancelButton);
         this.taskCard.append(this.listName);
         this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
@@ -126,6 +137,8 @@ class View {
         this.listInput.style.display = "none";
         this.listName.innerHTML = inputText;
         this.listName.style.display = "block";
+        this.cancelButton.style.display = "none";
+        this.oldListName = inputText;
 
         this.listName.addEventListener("click", this.changeListName)
         
@@ -133,10 +146,25 @@ class View {
 
     changeListName = () => {
         this.listInput.style.display = "block";
+        this.cancelButton.style.display = "block";
         this.listName.style.display = "none";
         this.addListButton.style.display = "block";
+
+        this.cancelButton.removeEventListener('click', this.cancelAdd)
+        this.cancelButton.addEventListener('click', this.cancelChange);  
+    }
+    
+    cancelAdd = () => {
+      this.taskCard.style.display = "none";
     }
 
+    cancelChange = () => {
+      this.listInput.style.display = "none";
+      this.listName.innerHTML = this.oldListName;
+      this.listName.style.display = "block";
+      this.addListButton.style.display = "none";
+      this.cancelButton.style.display = 'none';                 
+    }
 }
 
 export default View;
