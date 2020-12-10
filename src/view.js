@@ -11,8 +11,9 @@ class View {
         this.addListButton = null;
         this.boardContainer = null;
         this.addColumnbButton = null;
-        this.taskHeder = null;
-        this.inputText = null;        
+        this.inputText = null; 
+        this.canselBut = null;  
+        this.text = null;     
     }
     
     init = () => {
@@ -62,12 +63,20 @@ class View {
             className: 'Add__Task',
             buttonText: 'Add list',
         });
+
+        this.canselBut = this.createCloseBut({
+            id: 'close',
+            className: 'close',
+            buttonText: ' ❌ ',
+        });
         
+        this.canselBut.addEventListener("click", this.canselAdd);
         this.addListButton.addEventListener("click", this.createNewList);
 
         this.taskCard.append(this.listInput);
         this.taskCard.append(this.listName);
         this.taskCard.append(this.addListButton);
+        this.taskCard.append(this.canselBut);
         this.allTasks.append(this.taskCard);
     }
 
@@ -121,29 +130,65 @@ class View {
         return span;
     }
 
+    createButton = props => {
+        const button = document.createElement('button');
+
+        props.className && (button.className = props.className);
+        props.buttonText && (button.innerText = props.buttonText);
+        props.id && (button.id = props.id);
+
+        return button;
+    }
+
+    createCloseBut = props => {
+        const close = document.createElement('span');
+
+        props.className && (close.className = props.className);
+        props.buttonText && (close.innerText = props.buttonText);
+        props.id && (close.id = props.id);
+
+        return close;
+    }
+
     createNewList = () => {
         let inputText = this.listInput.value;
+        this.text = inputText;
         this.listInput.style.display = "none";
         this.listName.innerHTML = inputText;
         this.listName.style.display = "block";
+        this.addListButton.style.display = "none";
+        this.canselBut.style.display = 'none';
 
         this.listName.addEventListener("click", this.changeListName)
         
     }
 
     changeListName = () => {
+        
         this.listInput.style.display = "block";
+        this.addListButton.style.display = "block";
+        this.canselBut.style.display = 'block';
         this.listName.style.display = "none";
+
+        this.canselBut.removeEventListener('click', this.canselAdd)
+        this.canselBut.addEventListener('click', this.canselChange);  
     }
 
-    taskHeder = props => {
-        const span = document.createElement('span');
+    canselAdd = () => {
+        this.taskCard.remove(this.taskCard);
+    }
 
-        props.className && (span.className = props.className);
-        props.spanText && (span.innerText = props.spanText);
-        props.id && (span.id = props.id);
+    canselChange = () => {
+        this.listInput.style.display = "none";
+        this.listName.innerHTML = this.text;
+        this.listName.style.display = "block";
+        this.addListButton.style.display = "none";
+        this.canselBut.style.display = 'none';                 
+    }
 
-        return span;
+    addTaskCard = () => {
+        const list = document.createElement('ul');
+        this.taskCard.append(list);
     }
 }
 
