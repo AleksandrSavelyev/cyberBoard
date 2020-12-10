@@ -1,41 +1,64 @@
 body {
-    background-color: black;
+  display: grid;
+  background-color: black;
 }
-.Header {
-    background-color: black;
+
+.header {
   display: flex;
-  font-family: "Andika New Basic", sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: aqua;
   justify-content: center;
+  letter-spacing: 4px;
+}
+
+.Tasks {
+  display: flex;
 }
 
 .Container {
   background-color: black;
   display: flex;
-  border: 1px solid black;
   margin-left: 40px;
   height: 400px;
 }
 
-.TaskCard {
+.Task__card {
   display: flex;
   flex-direction: column;
-  height: 100%;
   margin: 10px;
-  border: solid 1px aqua;
   height: fit-content;
+  margin-top: 15px;
 }
 
+.List__Name {
+  color: aqua;
+  font-size: 10px;
+  letter-spacing: 4px;
+  border: solid 1px white;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  padding: 10px;
+  text-align: center;
+  flex-wrap: wrap;
+}
 .TaskC {
   display: flex;
   justify-content: center;
+  color: aqua;
+  letter-spacing: 4px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
 }
 
 .Taskcard {
   padding: 10px;
   margin: 10px;
+  box-shadow: 2px 3px aqua;
+  border-radius: 7px;
+  outline: none;
 }
-.AddTask {
+#addTask {
   border: solid 1px red;
   margin: 10px;
   outline: none;
@@ -43,17 +66,21 @@ body {
   height: 40px;
   width: 100px;
   border-radius: 5px;
+  letter-spacing: 4px;
   background: transparent;
   color: aqua;
-  font-size: 25px;
+  font-size: 14px;
   transition: all 0.5s;
   z-index: 1;
+  font-family: "Orbitron", sans-serif;
+  justify-content: center;
+  margin-left: 50px;
 }
 
-.AddTask::before {
+#addTask::before {
   content: "";
-  height: 60px;
-  width: 80px;
+  height: 20px;
+  width: 50px;
   border-radius: 150px;
   display: inline-block;
   position: absolute;
@@ -63,7 +90,7 @@ body {
   z-index: -1;
 }
 
-.AddTask:hover::before {
+#addTask:hover::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -76,7 +103,7 @@ body {
   background-size: 500%;
   background-position: left;
 }
-.AddTask:hover {
+#addTask:hover {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -99,5 +126,66 @@ body {
   }
 }
 
-.ButtonKeeper {
+#addTask2 {
+  border: solid 1px red;
+  margin: 10px;
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  letter-spacing: 4px;
+  background: transparent;
+  color: aqua;
+  font-size: 10px;
+  transition: all 0.5s;
+  z-index: 1;
+  font-family: "Orbitron", sans-serif;
+  justify-content: center;
+}
+
+#addTask2::before {
+  content: "";
+  height: 20px;
+  width: 50px;
+  border-radius: 150px;
+  display: inline-block;
+  position: absolute;
+  transform: translate(-50%, -59%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#addTask2:hover::before {
+  animation: slide 10s 0s linear;
+  background: linear-gradient(
+    to right,
+    #ffffe0,
+    #ff899b,
+    #b0ff90,
+    #37ffff,
+    #ffffe0
+  );
+  background-size: 500%;
+  background-position: left;
+}
+
+#addTask2:hover {
+  animation: slide 10s 0s infinite linear;
+  background: linear-gradient(
+    to right,
+    #ffffe0,
+    #ff899b,
+    #b0ff90,
+    #37ffff,
+    #ffffe0
+  );
+  background-size: 500%;
+  background-position: left;
+  color: black;
+}
+
+#addTask2 {
+  margin-left: 50px 10px 10px 10px;
 }
