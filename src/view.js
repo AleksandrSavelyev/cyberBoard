@@ -31,7 +31,7 @@ class View {
         this.addColumnbButton = this.createButton({
             id: 'addTask2',
             className: 'Add__Task',
-            buttonText: '+ Add another list',
+            buttonText: '+ Add new list',
         });
         this.header = this.createHeader({
             id: 'header',
@@ -73,6 +73,7 @@ class View {
         
         this.addListButton.addEventListener("click", this.createNewList);
         this.cancelButton.addEventListener("click", this.cancelAdd);
+        this.addColumnbButton.style.display = "none";
 
         this.taskCard.append(this.listInput);
         this.taskCard.append(this.cancelButton);
@@ -132,12 +133,13 @@ class View {
     }
 
     createNewList = () => {
+        this.addColumnbButton.style.display = "block";
         this.addListButton.style.display = "none";
         let inputText = this.listInput.value;
         this.listInput.style.display = "none";
         this.listName.innerHTML = inputText;
         this.listName.style.display = "block";
-        this.cancelButton.style.display = "none";
+        this.cancelButton.style.display = "block";
         this.oldListName = inputText;
 
         this.listName.addEventListener("click", this.changeListName)
@@ -145,6 +147,7 @@ class View {
     }
 
     changeListName = () => {
+      this.addColumnbButton.style.display = "none";
         this.listInput.style.display = "block";
         this.cancelButton.style.display = "block";
         this.listName.style.display = "none";
@@ -155,7 +158,8 @@ class View {
     }
     
     cancelAdd = () => {
-      this.taskCard.style.display = "none";
+      this.taskCard.remove();
+      this.addColumnbButton.style.display = "block";
     }
 
     cancelChange = () => {
