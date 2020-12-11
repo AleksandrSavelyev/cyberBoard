@@ -80,6 +80,11 @@ class View {
         this.taskCard.append(this.listName);
         this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
+
+        const perem = this.allTasks;
+        for(let i = 0; i < perem.lenght; i++) {
+            perem[i].onclick = this.cancelAdd;
+        }
     }
 
     createDiv = props => {
