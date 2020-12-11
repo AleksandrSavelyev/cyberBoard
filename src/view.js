@@ -77,17 +77,28 @@ class View {
         this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
         this.addListButton.addEventListener("click", this.createNewList);
-        this.cancelButton.addEventListener("click", this.cancelAdd);
+        //this.cancelButton.addEventListener("click", this.cancelAdd);
+        this.cancelAdd();
     }
 
     cancelAdd = () => {
-        const close = document.getElementsByClassName("close");
+        const close = document.querySelectorAll(".close");
+
         for (let i = 0; i < close.length; i++) {
-            close[i].onclick = function() {
-                var div = this.parentElement;
+            console.log("info");
+            close[i].addEventListener('click', function() {
+                console.log("info2");
+                const div = this.parentElement;
                 div.remove();
-            }
-        }
+                
+            })
+        } 
+        
+    }
+
+    onDisplayBlock = () => {
+        console.log('132245');
+        this.addColumnbButton.style.display = "block";
     }
 
     createDiv = props => {
