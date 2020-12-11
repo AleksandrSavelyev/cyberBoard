@@ -14,7 +14,6 @@ class View {
         this.addListButton = null;
         this.boardContainer = null;
         this.addColumnbButton = null;
-
     }
     
     init = () => {
@@ -47,7 +46,7 @@ class View {
     }
 
     createListContainer = () => {
-      this.addColumnbButton.style.display = "none";
+        this.addColumnbButton.style.display = "none";
         this.taskCard = this.createDiv({
             className: 'Task__Card',
         });
@@ -76,25 +75,22 @@ class View {
         this.taskCard.append(this.listName);
         this.taskCard.append(this.addListButton);
         this.allTasks.append(this.taskCard);
-        this.addListButton.addEventListener("click", this.createNewList);
-        //this.cancelButton.addEventListener("click", this.cancelAdd);
-        this.cancelAdd();
+        let newListName = this.addListButton.addEventListener("click", this.createNewList);
+        // this.cancelAdd();
     }
 
-    cancelAdd = () => {
-        const close = document.querySelectorAll(".close");
+    // cancelAdd = () => {
+    //     const close = document.querySelectorAll(".close");
 
-        for (let i = 0; i < close.length; i++) {
-            console.log("info");
-            close[i].addEventListener('click', function() {
-                console.log("info2");
-                const div = this.parentElement;
-                div.remove();
-                
-            })
-        } 
-        
-    }
+    //     for (let i = 0; i < close.length; i++) {
+    //         console.log("info");
+    //         close[i].addEventListener('click', function() {
+    //             console.log("info2");
+    //             const div = this.parentElement;
+    //             div.remove();
+    //         })
+    //     } 
+    // }
 
     onDisplayBlock = () => {
         console.log('132245');
@@ -162,6 +158,8 @@ class View {
         this.addColumnbButton.style.display = "block";
 
         this.listName.addEventListener("click", this.changeListName);
+
+        return inputText;
     }
 
     changeListName = () => {
