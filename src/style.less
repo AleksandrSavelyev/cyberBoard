@@ -32,7 +32,7 @@ body {
 }
 .Task__Card {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   // border: solid 1px white;
   margin-left: 10px;
 }
@@ -55,6 +55,8 @@ body {
 .close {
   display: flex;
   margin-left: 10px;
+  height: 30px;
+  margin-top: 15px;
   cursor: pointer;
 }
 
@@ -97,7 +99,7 @@ body {
   justify-content: center;
   cursor: pointer;
   // margin-left: 50px;
-  // border: solid 1px white;
+  border: solid 1px white;
 }
 
 #addTask::before {
@@ -126,7 +128,7 @@ body {
   background-size: 500%;
   background-position: left;
 }
-#addTask:hover {
+#addTask::backdrop {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -215,4 +217,25 @@ body {
 
 #addTask2 {
   margin-left: 50px 10px 10px 10px;
+}
+
+#save {
+  height: 30px;
+  width: 100px;
+}
+
+#delete {
+  height: 30px;
+  width: 100px;
+}
+.btn__save__del {
+  display: flex;
+  justify-content: center;
+}
+.task__card1 {
+  display: flex;
+}
+
+.task__card2 {
+  display: flex;
 }
