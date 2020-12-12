@@ -1,6 +1,6 @@
 body {
   display: grid;
-  background-color: rgb(250, 218, 218);
+  background-color: black;
 }
 
 .header {
@@ -11,11 +11,11 @@ body {
   letter-spacing: 4px;
 }
 
-.Tasks {
+.lists {
   display: flex;
 }
 
-.Container {
+.container {
   background-color: black;
   display: flex;
   // margin-left: 40px;
@@ -80,8 +80,8 @@ body {
   overflow: hidden;
   // width: fit-content;
 }
-#addTask {
-  // border: solid 1px red;
+.add__list {
+  border: solid 1px red;
   margin: 10px;
   // justify-content: space-around;
   outline: none;
@@ -102,7 +102,7 @@ body {
   border: solid 1px white;
 }
 
-#addTask::before {
+.add__list::before {
   content: "";
   height: 20px;
   width: 50px;
@@ -115,7 +115,7 @@ body {
   z-index: -1;
 }
 
-#addTask:hover::before {
+.add__list:hover::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -128,7 +128,7 @@ body {
   background-size: 500%;
   background-position: left;
 }
-#addTask::backdrop {
+.add__list::backdrop {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -151,7 +151,7 @@ body {
   }
 }
 
-#addTask2 {
+.add__task {
   border: solid 1px red;
   margin: 10px;
   outline: none;
@@ -173,7 +173,7 @@ body {
   cursor: pointer;
 }
 
-#addTask2::before {
+.add__task::before {
   content: "";
   height: 20px;
   width: 50px;
@@ -186,7 +186,7 @@ body {
   z-index: -1;
 }
 
-#addTask2:hover::before {
+.add__task:hover::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -200,7 +200,7 @@ body {
   background-position: left;
 }
 
-#addTask2:hover {
+.add__task:hover {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -214,8 +214,16 @@ body {
   background-position: left;
   color: black;
 }
+@keyframes slide {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 500%;
+  }
+}
 
-#addTask2 {
+.add__task {
   margin-left: 50px 10px 10px 10px;
 }
 
