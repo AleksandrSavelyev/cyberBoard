@@ -69,14 +69,23 @@ class View {
       spanText: "❎",
     });
 
-    this.addListButton.addEventListener("click", this.createNewList);
-    this.cancelButton.addEventListener("click", this.cancelAdd);
-
     this.taskCard.append(this.listInput);
-    this.taskCard.append(this.cancelButton);
     this.taskCard.append(this.listName);
+    this.taskCard.append(this.cancelButton);
     this.taskCard.append(this.addListButton);
     this.allTasks.append(this.taskCard);
+    this.addListButton.addEventListener("click", this.createNewList);
+    this.cancelButton.addEventListener("click", this.cancelAdd);
+  };
+
+  cancelAdd = () => {
+    const close = document.getElementsByClassName("close");
+    for (let i = 0; i < close.length; i++) {
+      close[i].onclick = function () {
+        var div = this.parentElement;
+        div.remove();
+      };
+    }
   };
 
   createDiv = (props) => {
@@ -147,14 +156,8 @@ class View {
     this.cancelButton.style.display = "block";
     this.listName.style.display = "none";
     this.addListButton.style.display = "block";
-
     this.cancelButton.removeEventListener("click", this.cancelAdd);
     this.cancelButton.addEventListener("click", this.cancelChange);
-  };
-
-  cancelAdd = () => {
-    this.taskCard.style.display = "none";
-    this.addColumnbButton.style.display = "block";
   };
 
   cancelChange = () => {

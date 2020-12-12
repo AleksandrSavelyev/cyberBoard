@@ -18,8 +18,9 @@ body {
 .Container {
   background-color: black;
   display: flex;
-  margin-left: 40px;
+  // margin-left: 40px;
   height: 400px;
+  // justify-content: space-around;
 }
 
 .Task__card {
@@ -29,20 +30,34 @@ body {
   height: fit-content;
   margin-top: 15px;
 }
+.Task__Card {
+  display: flex;
+  flex-wrap: wrap;
+  // border: solid 1px white;
+  margin-left: 10px;
+}
 
 .List__Name {
+  display: none;
   color: aqua;
   font-size: 20px;
   letter-spacing: 4px;
-  height: 50px;
-  width: 10px;
-  display: flex;
-  padding: 50px;
+  // height: fit-content;
+  width: 200px;
+  // width: fit-content;
   text-align: center;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   font-family: "Orbitron", sans-serif;
-  border: solid 1px white;
+  // border: solid 1px white;
+  word-wrap: break-word;
 }
+
+.close {
+  display: flex;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .TaskC {
   display: flex;
   justify-content: center;
@@ -59,14 +74,18 @@ body {
   border-radius: 7px;
   outline: none;
   font-family: "Orbitron", sans-serif;
+  height: fit-content;
+  overflow: hidden;
+  // width: fit-content;
 }
 #addTask {
-  border: solid 1px red;
+  // border: solid 1px red;
   margin: 10px;
+  // justify-content: space-around;
   outline: none;
   border: none;
   height: 40px;
-  width: 100px;
+  // width: 100px;
   border-radius: 5px;
   letter-spacing: 4px;
   background: transparent;
@@ -76,7 +95,9 @@ body {
   z-index: 1;
   font-family: "Orbitron", sans-serif;
   justify-content: center;
-  margin-left: 50px;
+  cursor: pointer;
+  // margin-left: 50px;
+  // border: solid 1px white;
 }
 
 #addTask::before {
@@ -147,6 +168,7 @@ body {
   margin-left: 10px;
   border: solid 1px white;
   display: flex;
+  cursor: pointer;
 }
 
 #addTask2::before {
