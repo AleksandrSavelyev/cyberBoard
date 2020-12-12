@@ -24,7 +24,7 @@ class View {
             className: 'add__list',
         });
         this.addNewListButton = this.createButton({
-            className: 'add__list__button',
+            className: 'add__task',
             buttonText: '+ Add new list',
         });
         this.header = this.createHeader({
@@ -62,7 +62,7 @@ class View {
           spanText: '❎',
         });
         const addTaskButton = this.createButton({
-            className: 'add__task',
+            className: 'add__list',
             buttonText: 'Add task',
         });
 
@@ -102,11 +102,11 @@ class View {
             spanText: taskName,
         });
         const saveTaskButton = this.createButton({
-            className: 'save__button',
+            className: 'add__list',
             buttonText: 'Save',
         });
         const deleteTaskButton = this.createButton({
-            className: 'delete__task',
+            className: 'add__list',
             buttonText: 'Delete',
         });
 
