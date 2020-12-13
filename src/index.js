@@ -1,12 +1,12 @@
 import "./style.less";
+import Controller from "./controller/Controller";
 import View from "./view/View";
 import Model from "./model/Model";
-import Controller from "./controller/Controller";
 
-function init() {
-  const model = new Model();
-  const view = new View();
-  const controller = new Controller(model, view);
-}
-
-init();
+function start() {
+      const view = new View();
+      const model = new Model();
+      const controller = new Controller(view, model);
+  }
+  
+start();
