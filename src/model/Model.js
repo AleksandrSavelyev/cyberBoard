@@ -19,6 +19,21 @@ class Model{
             }
         ];
     }
+
+    addNewListToDataBase = newList => {   
+       return this.db.push(newList);
+    }
+
+    deleteListFromDataBase = listId => {
+        this.db = this.db.filter(cb => {return cb.listId != listId});
+    }
+
+    addNewTask = (task, listId) => {
+        this.db.forEach(element => {
+            if(element.listId === listId)
+            element.tasks.push(task);
+        });
+    }
 }
 
 export default Model;
