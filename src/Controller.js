@@ -29,9 +29,9 @@ class Controller {
         });
 
         this.activateAddListButton();
-        this.getEmptyTask();
+        //this.getEmptyTask();
         this.closeList();
-        this.getNewTask();
+        //this.getNewTask();
     }
 
     activateAddListButton = () => {
@@ -58,41 +58,25 @@ class Controller {
         this.view.activateSaveButton(this.saveNewListInfo.bind(this));
     }
 
-    addInfoFromViewToDataBase = (newListInfo) => {
-        this.model.addNewListToDataBase(newListInfo);
-         
-         this.createBoard();
-    }
-
     saveNewListInfo = () => {
         //console.log("salam");
         this.view.newListName.innerHTML = this.view.newListInput.value;
         this.view.newListInput.style.display = "block";
         let newListInfo = {listName: this.view.newListInput.value, listId: this.view.newListId, tasks: [] };
         
-        this.addInfoFromViewToDataBase(newListInfo);
-    }
-
-    getEmptyTask = () => {
-        this.view.activateAddTaskButton(this.createEmptyTask.bind(this));
+        this.model.addNewListToDataBase(newListInfo);
+         
+        this.createBoard();
     }
 
     getNewTask = () => {
         this.view.activateSaveTaskButton(this.saveNewTaskInfo.bind(this));
     }
     
-    createEmptyTask = () => {
-        let newTaskInfo = { taskId: this.view.newTaskId }; 
-      
-        this.model.addNewTask(newTaskInfo, this.view.listCard.id);
+    saveNewTaskInfo = (e) => {
 
-        this.createBoard();
-
-    }
-
-    saveNewTaskInfo = () => {
-
-        let newTaskInfo = {taskName: this.view.newTaskInput.value, taskId: this.view.newTaskId};
+        console.log(this.view.newTaskInput.value);
+        let newTaskInfo = {taskName: e.target.newTaskInput.value, taskId: e.target.newTaskInput.id};
         
         this.model.addNewTask(newTaskInfo, this.view.listCard.id);
 
