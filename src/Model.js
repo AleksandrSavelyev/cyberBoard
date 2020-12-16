@@ -28,10 +28,16 @@ class Model{
         this.db = this.db.filter(cb => {return cb.listId != listId});
     }
 
-    addNewTask = (task, listId) => {
+    addNewTaskToDataBase = (task, listId) => {
         this.db.forEach(element => {
             if(element.listId === listId)
             element.tasks.push(task);
+        });
+    }
+
+    deleteTaskFromDataBase = taskId => {
+        this.db.forEach(element => {
+            element.tasks = element.tasks.filter(obj => {return obj.taskId != taskId});
         });
     }
 }

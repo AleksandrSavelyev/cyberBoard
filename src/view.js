@@ -15,6 +15,7 @@ class View {
         this.addNewListButton = null; 
         this.addNewTaskButton = null; 
         this.saveNewTaskButton = null;
+        this.cancelListButton =null;
     }
     
     init = () => {
@@ -27,13 +28,13 @@ class View {
         const listsContainer = this.createDiv({className: 'lists-container'});
         this.inputForNewList = this.createInput({className: 'add-list__list-input', placeholder: 'Enter list name...'});
         this.addNewListButton = this.createButton({className: 'button-container__add-button', buttonText: '+ Add new list', id: 'addlist'});
-        const cancelListButton = this.createButton({className: 'add-list__cancel-button', buttonText: 'x', id: 'cancelList'});
+        this.cancelListButton = this.createButton({className: 'add-list__cancel-button', buttonText: 'x', id: 'cancelList'});
         const addListButtonContainer = this.createDiv({className: 'add-list__button-container'});
 
         addListButtonContainer.append(this.addNewListButton);
         this.addListForm.append(this.inputForNewList);
         this.addListForm.append(this.saveListButton);
-        this.addListForm.append(cancelListButton);
+        this.addListForm.append(this.cancelListButton);
         addList.append(addListButtonContainer);
         addList.append(this.addListForm);
         listsContainer.append(this.allLists);
@@ -42,12 +43,13 @@ class View {
         this.root.append(listsContainer);
 
         this.addListForm.style.display = 'none';
+        this.addNewListButton.addEventListener('click', this.showAddListForm);
     }
 
     createListContainer = (id, name) => {
-        this.tasksList = this.createUl({id: id, className: 'task-container__tasks-list'});
+        this.tasksList = this.createUl({className: 'task-container__tasks-list'});
         const listName = this.createSpan({className: 'list-container__list-name', spanText: name});
-        const listColumn = this.createDiv({className: 'all-lists__list-column'});
+        const listColumn = this.createDiv({id: id, className: 'all-lists__list-column'});
         const addTaskForm = this.createDiv({className: 'task-container__add-task'});
         const addTaskInput = this.createInput({className: 'add-task__input', placeholder: 'Enter task'});
         const listContainer = this.createDiv({className: 'list__container'});
@@ -82,22 +84,39 @@ class View {
         this.tasksList.append(taskLi);
         //saveButton.addEventListener('click', this.addNewTask)
     }
-
-    activateAddListButton = cb => {
-         this.addNewListButton.addEventListener('click', () =>{
-             cb();
-         });
+        
+    showAddListForm = () => {
+        this.addListForm.style.display = 'block';
+        this.cancelListButton.addEventListener('click', this.closeAddListForm);
     }
     
+    closeAddListForm = () => {
+        this.addListForm.style.display = 'none';
+        this.inputForNewList.value = '';
+    }
+
     createNewListId = () => {
         this.newListId++;
     }
+    
     activateSaveListButton = cb => {
         this.saveListButton.addEventListener('click', () => {
             const newListName = this.inputForNewList.value;
-            this.createNewListId()
+            this.createNewListId();
             let newId = 'List_' + this.newListId;
             cb(newListName, newId);
+         });
+    }
+
+    activateDeleteListButton = cb => {
+        document.addEventListener('click', event => {
+            cb(event);
+         });
+    }
+
+    activateDeleteTaskButton = cb => {
+        document.addEventListener('click', event => {
+            cb(event);
          });
     }
 
@@ -170,56 +189,6 @@ class View {
 
         return li;
     }
-    // changeListName = () => {
-    //     this.listInput.style.display = "block";
-    //     this.cancelButton.style.display = "block";
-    //     this.listName.style.display = "none";
-    //     this.addListButton.style.display = "block";
-    //     this.cancelButton.removeEventListener('click', this.cancelAdd)
-    //     this.cancelButton.addEventListener('click', this.cancelChange);  
-    // }
-
-    // showColForm = () => {
-    //     this.view.createColumnForm();
-    //     this.view.addColumnListener(this.addColumn.bind(this));
-    //  }
-     
-    //  addColumn = () => {
-    //        const inputValue = document.getElementById('column-name').value;
-    //        this.model.addColumnToDb(inputValue);
-    //        this.getDataFromDb();
-    //  };
-  
-    //  deleteColumn = event => {
-    //     if (event.target.className === 'column-header__column-delete-btn') {
-    //        this.model.delColumnFromDb(event.path[2].id);
-    //        this.getDataFromDb();
-    //     }
-    //  };
-  
-    //  addTask = event => {
-    //     if (event.target.className === 'column__add-task-btn') {
-    //        this.model.addTaskToDb(event.path[1].id, "task");
-    //        this.getDataFromDb();
-    //     }
-    //  }
-  
-    //  deleteTask = event => {
-    //     if (event.target.className === 'task__task-delete-btn') {
-    //        this.model.delTaskFromDb(event.path[3].id, event.path[1].id);
-    //        this.getDataFromDb();
-    //     }
-    //  };
-  
-    //  getDataFromDb = () => {
-    //     this.view.columnsContainer.innerHTML = '';
-    //     const dataFromDb = this.model.dataBase;
-        
-    //     dataFromDb.forEach(element => {
-    //        this.view.createColumn(element);
-    //     });
-    //  };
-
 }
 
 export default View;

@@ -10,7 +10,6 @@ class Controller {
     init = () => {
         this.view.init();
         this.createBoard();
-        this.view.activateAddListButton(this.showAddListForm.bind(this));
     }
 
     createBoard = () => {
@@ -27,11 +26,10 @@ class Controller {
                 this.view.addTaskToList(taskName, taskId);
             });
         });
-    }
 
-    showAddListForm = () => {
-        this.view.addListForm.style.display = 'block';
         this.view.activateSaveListButton(this.addList.bind(this));
+        this.view.activateDeleteListButton(this.deleteList.bind(this));
+        this.view.activateDeleteTaskButton(this.deleteTask.bind(this));
     }
 
     addList = (listName, listId) => {
@@ -40,64 +38,21 @@ class Controller {
         this.createBoard();
     };
 
-    // activateAddListButton = () => {
-    //     this.view.addNewListButton.addEventListener("click", this.startAddNewList);   
-    // }
+    deleteList = event => {
+        if (event.target.className === 'list-container__delete-button') {
+        //console.log(event.path);
+           this.model.deleteListFromDataBase(event.path[2].id);
+           this.createBoard();
+        }
+     };
     
-    // startAddNewList = () => {
-    //     this.view.addNewListContainer();
-    //     this.getNewList();
-    //     this.closeList();
-    // }
-
-    // closeList = () => {
-    //     this.view.activateCloseButton(this.deleteListFromDataBase.bind(this));
-    // }
-
-    // deleteListFromDataBase = () => {
-
-    //     this.model.deleteListFromDataBase(this.view.listCard.id);
-    //     this.createBoard();
-    // }
-    
-    // getNewList = () => {
-    //     this.view.activateSaveButton(this.saveNewListInfo.bind(this));
-    // }
-
-    // saveNewListInfo = () => {
-    //     //console.log("salam");
-    //     this.view.newListName.innerHTML = this.view.newListInput.value;
-    //     this.view.newListInput.style.display = "block";
-    //     let newListInfo = {listName: this.view.newListInput.value, listId: this.view.newListId, tasks: [] };
-        
-    //     this.model.addNewListToDataBase(newListInfo);
-         
-    //     this.createBoard();
-    // }
-
-    // getNewTask = () => {
-    //     this.view.activateSaveTaskButton(this.saveNewTaskInfo.bind(this));
-    // }
-
-    // createNewTask = () => {
-    //     this.view.activateAddTaskButton(this.createEmptyTask.bind(this));
-    // }
-
-    // createEmptyTask = () => {
-    //     let newTaskInfo = {};
-    //     console.log(this.view.listCard.id);
-    //     this.model.addNewTask(newTaskInfo, this.view.listCard.id);
-
-    //     this.createBoard();
-    //     this.getNewTask();
-
-    // }
-    // saveNewTaskInfo = () => {
-    //     let newTaskInfo = {taskName: this.view.newTaskInput.value, taskId: this.view.newTaskInput.id};
-    //     this.model.addNewTask(newTaskInfo, this.view.listCard.id);
-
-    //     this.createBoard();
-    // }
+    deleteTask = event => {
+        if (event.target.className === 'task-card__delete-task') {
+        //console.log(event.path);
+           this.model.deleteTaskFromDataBase(event.path[1].id);
+           this.createBoard();
+        }
+     };
 }
 
 export default Controller;
