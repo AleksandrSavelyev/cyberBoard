@@ -4,9 +4,14 @@ class Controller {
         this.model = model;
         this.view = view;
         
+        this.init();
+    }     
+    
+    init = () => {
         this.view.init();
         this.createBoard();
-    }                  
+        this.view.activateAddListButton(this.showAddListForm.bind(this));
+    }
 
     createBoard = () => {
         this.view.root.innerHTML = "";
@@ -22,6 +27,10 @@ class Controller {
             //     this.view.addTaskToList(taskName, taskId);
             // });
         });
+    }
+
+    showAddListForm = () => {
+        this.view.addListForm.style.display = 'block';
     }
 
     // activateAddListButton = () => {

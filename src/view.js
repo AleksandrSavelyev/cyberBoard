@@ -4,37 +4,44 @@ class View {
     constructor(){
         this.root = null;
         this.allLists = null;
-        this.taskCard = null; //id model
-        this.tasksList = null; //id model
-        this.newTaskId = null; //funk
-        this.newListId = null; //funk
-        this.inputForNewTask = null; //value
+        this.taskCard = null; 
+        this.tasksList = null; 
+        this.newTaskId = null; 
+        this.newListId = null; 
+        this.addListForm = null; 
+        this.saveListButton = null; 
+        this.inputForNewTask = null; 
         this.inputForNewList = null; 
         this.addNewListButton = null; 
-        this.addNewTaskButton = null; //1
-        this.saveNewTaskButton = null; //1
-        this.saveNewListButton = null; 
+        this.addNewTaskButton = null; 
+        this.saveNewTaskButton = null;
     }
     
     init = () => {
         this.root = document.getElementById('root');
         const header = this.createHeader({className: 'header', headerText: 'CYBER BOARD', });
-        const addList = this.createDiv({className: 'add__list'});
-        this.allLists = this.createDiv({className: 'all__lists'});
-        const listsContainer = this.createDiv({className: 'container'});
+        const addList = this.createDiv({className: 'lists-container__add-list'});
+        this.allLists = this.createDiv({className: 'lists-container__all-lists'});
+        this.addListForm = this.createDiv({className: 'add-list__add-form'});
+        this.saveListButton = this.createButton({className: 'add-list__save-button', buttonText: 'Save list', id: 'savelist'});
+        const listsContainer = this.createDiv({className: 'lists-container'});
         this.inputForNewList = this.createInput({className: 'add-list__list-input', placeholder: 'Enter list name...'});
-        this.addNewListButton = this.createButton({className: 'add-list__add-button', buttonText: '+ Add new list', id: 'addlist'});
-        const saveListButton = this.createButton({className: 'add-list__save-button', buttonText: 'Save list', id: 'savelist'});
+        this.addNewListButton = this.createButton({className: 'button-container__add-button', buttonText: '+ Add new list', id: 'addlist'});
         const cancelListButton = this.createButton({className: 'add-list__cancel-button', buttonText: 'x', id: 'cancelList'});
-        
-        addList.append(this.inputForNewList);
-        addList.append(this.addNewListButton);
-        addList.append(saveListButton);
-        addList.append(cancelListButton);
+        const addListButtonContainer = this.createDiv({className: 'add-list__button-container'});
+
+        addListButtonContainer.append(this.addNewListButton);
+        this.addListForm.append(this.inputForNewList);
+        this.addListForm.append(this.saveListButton);
+        this.addListForm.append(cancelListButton);
+        addList.append(addListButtonContainer);
+        addList.append(this.addListForm);
         listsContainer.append(this.allLists);
         listsContainer.append(addList);
         this.root.append(header);
         this.root.append(listsContainer);
+
+        this.addListForm.style.display = 'none';
     }
 
     createListContainer = (id, name) => {
@@ -61,79 +68,15 @@ class View {
         listColumn.append(listContainer);
         listColumn.append(taskContainer);
         this.allLists.append(listColumn);
+
+        addTaskForm.style.display = 'none';
     }
 
-    // addNewListContainer = () => {
-    //     this.addNewListButton.style.display = "none";
-    //     let id = 3;
-    //     this.newListId = "List_" + id;
-    //     this.listCard = this.createUl({
-    //         id: this.newListId,
-    //         className: 'list__card',
-    //     });
-    //     this.newListName = this.createSpan({
-    //         className: 'list__name',
-    //     });
-    //     this.newListInput = this.createInput({
-    //         className: 'list_input',
-    //         placeholder: 'Enter list title...',
-    //     });
-    //     this.saveListButton = this.createButton({
-    //         className: 'save__list',
-    //         buttonText: 'Save list',
-    //     });
-    //     const cancelButton  = this.createSpan({
-    //         id: this.newListId,
-    //         className: 'close',
-    //         spanText: '❎',
-    //     });
-    //     const addTaskButton = this.createButton({
-    //         id: this.newListId,
-    //         className: 'add__task',
-    //         buttonText: 'Add task',
-    //     }); 
-    //     const newTaskInput = this.createInput({
-    //         className: 'task__input',
-    //         placeholder: 'Enter task',
-    //     });
-    //     const saveTaskButton = this.createButton({
-    //         id: taskId,
-    //         className: 'save__button',
-    //         buttonText: 'Save',
-    //     });
-    //     const deleteTaskButton = this.createButton({
-    //         className: 'delete__task',
-    //         buttonText: 'x',
-    //     });
-        
-    //     this.listCard.append(this.newListInput);
-    //     this.listCard.append(cancelButton);
-    //     this.listCard.append(this.newListName);
-    //     this.listCard.append(this.saveListButton);
-    //     this.listCard.append(addTaskButton);
-    //     this.listCard.append(newTaskInput);
-    //     this.listCard.append(saveTaskButton);
-    //     this.listCard.append(deleteTaskButton);
-    //     this.allLists.append(this.listCard);
-
-    //     addTaskButton.style.display = "none";
-    //     saveTaskButton.style.display = "none";
-    // }
-
-    // addTaskToList = (taskName, taskId) => {
-    //     const taskLi = this.createLi({
-    //         id: taskId,
-    //         className: 'task__card',
-    //     });
-    //     this.newTaskName = this.createSpan({
-    //         className: 'task__name',
-    //         spanText: taskName,
-    //     });
-
-    //     taskLi.append(this.newTaskName);
-    //     this.listCard.append(taskLi);
-    //     //saveButton.addEventListener('click', this.addNewTask)
-    // }
+    activateAddListButton = cb => {
+         this.addNewListButton.addEventListener('click', () =>{
+             cb();
+         });
+    }
 
     createDiv = props => {
         const div = document.createElement('div');
