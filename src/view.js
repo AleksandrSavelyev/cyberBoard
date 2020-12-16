@@ -14,8 +14,8 @@ class View {
         this.inputForNewList = null; 
         this.addNewListButton = null; 
         this.addNewTaskButton = null; 
-        this.saveNewTaskButton = null;
-        this.cancelListButton =null;
+        this.cancelListButton = null;
+        this.saveTaskButton = null;
     }
     
     init = () => {
@@ -51,22 +51,22 @@ class View {
         const listName = this.createSpan({className: 'list-container__list-name', spanText: name});
         const listColumn = this.createDiv({id: id, className: 'all-lists__list-column'});
         const addTaskForm = this.createDiv({className: 'task-container__add-task'});
-        const addTaskInput = this.createInput({className: 'add-task__input', placeholder: 'Enter task'});
+        this.inputForNewTask= this.createInput({className: 'add-task__input', placeholder: 'Enter task'});
         const listContainer = this.createDiv({className: 'list__container'});
         const taskContainer = this.createDiv({className: 'task__container'});
         const addTaskButton = this.createButton({id: 'addtask', className: 'list-container__add-task-button', buttonText: 'Add task'});
-        const saveTaskButton = this.createButton({id: 'savetask', className: 'add-task__save-button', buttonText: 'Save'});
-        const cancelTaskButton = this.createButton({id: 'canceltask', className: 'add-task__cncel-button', buttonText: 'x'});
+        this.saveTaskButton = this.createButton({id: 'savetask', className: 'add-task__save-button', buttonText: 'Save'});
+        const cancelTaskButton = this.createButton({id: 'canceltask', className: 'add-task__cancel-button', buttonText: 'x'});
         const deleteListButton  = this.createSpan({id: 'deletelist', className: 'list-container__delete-button', spanText: '❎'});
         
         listContainer.append(listName);
         listContainer.append(deleteListButton);
         listContainer.append(addTaskButton);
-        addTaskForm.append(addTaskInput);
-        addTaskForm.append(saveTaskButton);
+        addTaskForm.append(this.inputForNewTask);
+        addTaskForm.append(this.saveTaskButton);
         addTaskForm.append(cancelTaskButton);
         taskContainer.append(this.tasksList);
-        taskContainer.append(addTaskForm);
+        listContainer.append(addTaskForm);
         listColumn.append(listContainer);
         listColumn.append(taskContainer);
         this.allLists.append(listColumn);
@@ -82,7 +82,6 @@ class View {
         taskLi.append(taskName);
         taskLi.append(deleteTaskButton);
         this.tasksList.append(taskLi);
-        //saveButton.addEventListener('click', this.addNewTask)
     }
         
     showAddListForm = () => {
@@ -98,6 +97,10 @@ class View {
     createNewListId = () => {
         this.newListId++;
     }
+
+    createNewTaskId = () => {
+        this.newTaskId++;
+    }
     
     activateSaveListButton = cb => {
         this.saveListButton.addEventListener('click', () => {
@@ -105,6 +108,16 @@ class View {
             this.createNewListId();
             let newId = 'List_' + this.newListId;
             cb(newListName, newId);
+         });
+    }
+
+    activateSaveTaskButton = cb => {
+        document.addEventListener('click', event => {
+            event.stopPropagation();
+            //const newTaskName = this.inputForNewTask.value;
+            this.createNewTaskId();
+            let newId = 'Task_' + this.newTaskId;
+            cb(newId, event);
          });
     }
 
@@ -120,6 +133,25 @@ class View {
          });
     }
 
+    activateAddTaskButton = cb => {
+        document.addEventListener('click', event => {
+            event.stopPropagation();
+            cb(event);
+         });
+    }
+
+    closeAddTaskForm = () => {
+        this.addTaskForm.style.display = 'none';
+        this.inputForNewTask.value = '';
+    }
+
+    activateCloseTaskButton = cb => {
+        document.addEventListener('click', event => {
+            cb(event);
+         });
+    }
+
+   
     createDiv = props => {
         const div = document.createElement('div');
 
