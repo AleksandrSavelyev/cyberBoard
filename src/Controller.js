@@ -21,17 +21,24 @@ class Controller {
             let listId = Element.listId;
             let tasks = Element.tasks;
             this.view.createListContainer(listId, listName);
-            // tasks.forEach(Element => {
-            //     let taskName = Element.taskName;
-            //     let taskId = Element.taskId;
-            //     this.view.addTaskToList(taskName, taskId);
-            // });
+            tasks.forEach(Element => {
+                let taskName = Element.taskName;
+                let taskId = Element.taskId;
+                this.view.addTaskToList(taskName, taskId);
+            });
         });
     }
 
     showAddListForm = () => {
         this.view.addListForm.style.display = 'block';
+        this.view.activateSaveListButton(this.addList.bind(this));
     }
+
+    addList = (listName, listId) => {
+        let newListInfo = {listName: listName, listId: listId, tasks: [] };
+        this.model.addNewListToDataBase(newListInfo);
+        this.createBoard();
+    };
 
     // activateAddListButton = () => {
     //     this.view.addNewListButton.addEventListener("click", this.startAddNewList);   

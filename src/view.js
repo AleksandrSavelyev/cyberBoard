@@ -72,9 +72,32 @@ class View {
         addTaskForm.style.display = 'none';
     }
 
+    addTaskToList = (name, id) => {
+        const taskLi = this.createLi({id: id, className: 'task__card'});
+        const taskName = this.createSpan({className: 'task-card__task-name', spanText: name});
+        const deleteTaskButton = this.createButton({id: 'deletetask', className: 'task-card__delete-task', buttonText: 'x'});
+
+        taskLi.append(taskName);
+        taskLi.append(deleteTaskButton);
+        this.tasksList.append(taskLi);
+        //saveButton.addEventListener('click', this.addNewTask)
+    }
+
     activateAddListButton = cb => {
          this.addNewListButton.addEventListener('click', () =>{
              cb();
+         });
+    }
+    
+    createNewListId = () => {
+        this.newListId++;
+    }
+    activateSaveListButton = cb => {
+        this.saveListButton.addEventListener('click', () => {
+            const newListName = this.inputForNewList.value;
+            this.createNewListId()
+            let newId = 'List_' + this.newListId;
+            cb(newListName, newId);
          });
     }
 
@@ -155,6 +178,47 @@ class View {
     //     this.cancelButton.removeEventListener('click', this.cancelAdd)
     //     this.cancelButton.addEventListener('click', this.cancelChange);  
     // }
+
+    // showColForm = () => {
+    //     this.view.createColumnForm();
+    //     this.view.addColumnListener(this.addColumn.bind(this));
+    //  }
+     
+    //  addColumn = () => {
+    //        const inputValue = document.getElementById('column-name').value;
+    //        this.model.addColumnToDb(inputValue);
+    //        this.getDataFromDb();
+    //  };
+  
+    //  deleteColumn = event => {
+    //     if (event.target.className === 'column-header__column-delete-btn') {
+    //        this.model.delColumnFromDb(event.path[2].id);
+    //        this.getDataFromDb();
+    //     }
+    //  };
+  
+    //  addTask = event => {
+    //     if (event.target.className === 'column__add-task-btn') {
+    //        this.model.addTaskToDb(event.path[1].id, "task");
+    //        this.getDataFromDb();
+    //     }
+    //  }
+  
+    //  deleteTask = event => {
+    //     if (event.target.className === 'task__task-delete-btn') {
+    //        this.model.delTaskFromDb(event.path[3].id, event.path[1].id);
+    //        this.getDataFromDb();
+    //     }
+    //  };
+  
+    //  getDataFromDb = () => {
+    //     this.view.columnsContainer.innerHTML = '';
+    //     const dataFromDb = this.model.dataBase;
+        
+    //     dataFromDb.forEach(element => {
+    //        this.view.createColumn(element);
+    //     });
+    //  };
 
 }
 
