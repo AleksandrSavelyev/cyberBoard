@@ -19,16 +19,17 @@ class View {
 
   init = () => {
     const listsContainer = this.createDiv({
-      className: "container",
+      className: "lists-container__all-lists",
     });
     this.allLists = this.createDiv({
-      className: "lists",
+      className: "lists-container",
     });
     const buttonKeeper = this.createDiv({
-      className: "add__list",
+      className: "add-list__add-form",
     });
     this.addNewListButton = this.createButton({
-      className: "add__list__button",
+      id: "addlist",
+      className: "button-container__add-button",
       buttonText: "+ Add new list",
     });
     this.header = this.createHeader({
@@ -50,25 +51,26 @@ class View {
       className: "list__card",
     });
     const newlistName = this.createSpan({
-      className: "list__name",
-      spanText: listName,
+      className: "list-container__list-name",
+      spanText: listName, //hello
     });
     const listInput = this.createInput({
       className: "list_input",
       placeholder: "Enter list title...",
     });
     const saveListButton = this.createButton({
-      className: "save__list",
+      id: "savelist",
+      className: "add-list__save-button",
       buttonText: "Save list",
     });
     const cancelButton = this.createSpan({
-      id: listId,
-      className: "close",
+      id: "deletelist",
+      className: "list-container__delete-button",
       spanText: "❎",
     });
     const addTaskButton = this.createButton({
-      id: listId,
-      className: "add__task",
+      id: "addtask",
+      className: "list-container__add-task-button",
       buttonText: "Add task",
     });
 
@@ -90,17 +92,18 @@ class View {
     this.newListId = "List_" + id;
     this.listCard = this.createUl({
       id: this.newListId,
-      className: "list__card",
+      className: "task-container__tasks-list",
     });
     this.newListName = this.createSpan({
       className: "list__name",
     });
     this.newListInput = this.createInput({
-      className: "list_input",
+      className: "add-list__list-input",
       placeholder: "Enter list title...",
     });
     this.saveListButton = this.createButton({
-      className: "save__list",
+      id: "savelist",
+      className: "add-list__save-button",
       buttonText: "Save list",
     });
     const cancelButton = this.createSpan({
@@ -162,7 +165,7 @@ class View {
 
   addTaskToList = (taskName, taskId) => {
     const taskLi = this.createLi({
-      id: taskId,
+      id: "task_1",
       className: "task__card",
     });
     this.newTaskInput = this.createInput({
@@ -179,7 +182,8 @@ class View {
       buttonText: "Save",
     });
     const deleteTaskButton = this.createButton({
-      className: "delete__task",
+      id: "deletetask",
+      className: "task-card__delete-task",
       buttonText: "x",
     });
 
@@ -202,7 +206,7 @@ class View {
     let id = 5;
     let taskId = "Task_" + id;
     const taskLi = this.createLi({
-      id: taskId,
+      id: "task__2",
       className: "task__card",
     });
     const newTaskInput = this.createInput({
@@ -219,7 +223,8 @@ class View {
       buttonText: "Save",
     });
     const deleteTaskButton = this.createButton({
-      className: "delete__task",
+      id: "deletetask",
+      className: "task-card__delete-task",
       buttonText: "x",
     });
 

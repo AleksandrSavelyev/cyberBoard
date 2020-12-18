@@ -11,55 +11,138 @@ body {
   letter-spacing: 4px;
 }
 
+.lists-container {
+  display: flex;
+}
+
 .lists {
   display: flex;
 }
 
 .container {
-  background-color: white;
   display: flex;
   margin-left: 40px;
   height: 400px;
 }
 
-.Task__card {
+.list__container {
   display: flex;
-  flex-direction: column;
-  margin: 10px;
-  height: fit-content;
-  margin-top: 15px;
 }
 
-.List__Name {
-  color: aqua;
-  font-size: 10px;
-  letter-spacing: 4px;
-  height: 50px;
-  width: fit-content;
-  display: flex;
-  padding: 10px;
-  text-align: center;
-  flex-wrap: wrap;
-  font-family: "Orbitron", sans-serif;
+.add-list__add-form {
 }
-.TaskC {
+
+.list-container__list-name {
   display: flex;
-  justify-content: center;
+  margin-right: 10px;
+  align-items: center;
   color: aqua;
-  letter-spacing: 4px;
-  font-weight: bold;
   font-family: "Orbitron", sans-serif;
 }
 
-.Taskcard {
-  padding: 10px;
-  margin: 10px;
-  box-shadow: 2px 3px aqua;
-  border-radius: 7px;
-  outline: none;
+.list-container__delete-button {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.task__card {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+.task-card__task-name {
+  // align-items: center;
+  margin-right: 30px;
+  color: aqua;
   font-family: "Orbitron", sans-serif;
 }
-.add__list {
+
+.task-container__tasks-list {
+  padding: 0;
+}
+
+.button-container__add-button {
+  margin-bottom: 10px;
+}
+
+.add-list__list-input {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+.add-list__save-button {
+  margin-right: 10px;
+  margin-left: 70px;
+  background-color: aqua;
+}
+
+.add__list__add-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list__container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.lists-container__all-lists {
+  display: flex;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.all-lists__list-column {
+  margin-right: 20px;
+}
+
+// .Task__card {
+//   display: flex;
+//   flex-direction: column;
+//   margin: 10px;
+//   height: fit-content;
+//   margin-top: 15px;
+// }
+
+// .List__Name {
+//   color: aqua;
+//   font-size: 10px;
+//   letter-spacing: 4px;
+//   height: 50px;
+//   width: fit-content;
+//   display: flex;
+//   padding: 10px;
+//   text-align: center;
+//   flex-wrap: wrap;
+//   font-family: "Orbitron", sans-serif;
+// }
+// .TaskC {
+//   display: flex;
+//   justify-content: center;
+//   color: aqua;
+//   letter-spacing: 4px;
+//   font-weight: bold;
+//   font-family: "Orbitron", sans-serif;
+// }
+
+// .Taskcard {
+//   padding: 10px;
+//   margin: 10px;
+//   box-shadow: 2px 3px aqua;
+//   border-radius: 7px;
+//   outline: none;
+//   font-family: "Orbitron", sans-serif;
+// }
+.button-container__add-button {
   border: solid 1px red;
   margin: 10px;
   outline: none;
@@ -70,15 +153,14 @@ body {
   letter-spacing: 4px;
   background: transparent;
   color: aqua;
-  font-size: 14px;
+  font-size: 10px;
   transition: all 0.5s;
   z-index: 1;
   font-family: "Orbitron", sans-serif;
   justify-content: center;
-  margin-left: 50px;
 }
 
-.add__list::before {
+.button-container__add-button::before {
   content: "";
   height: 20px;
   width: 50px;
@@ -91,7 +173,7 @@ body {
   z-index: -1;
 }
 
-.add__list:hover::before {
+.button-container__add-button::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -104,7 +186,7 @@ body {
   background-size: 500%;
   background-position: left;
 }
-.add__list:hover {
+.button-container__add-button:hover {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -127,9 +209,10 @@ body {
   }
 }
 
-.add__task {
+.list-container__add-task-button {
+  display: flex;
+  align-items: center;
   border: solid 1px red;
-  margin: 10px;
   outline: none;
   border: none;
   height: 40px;
@@ -145,7 +228,7 @@ body {
   justify-content: center;
 }
 
-.add__task::before {
+.list-container__add-task-button::before {
   content: "";
   height: 20px;
   width: 50px;
@@ -158,7 +241,7 @@ body {
   z-index: -1;
 }
 
-.add__task:hover::before {
+.list-container__add-task-button:hover::before {
   animation: slide 10s 0s linear;
   background: linear-gradient(
     to right,
@@ -172,7 +255,7 @@ body {
   background-position: left;
 }
 
-.add__task:hover {
+.list-container__add-task-button:hover {
   animation: slide 10s 0s infinite linear;
   background: linear-gradient(
     to right,
@@ -195,14 +278,14 @@ body {
   }
 }
 
-.add__task {
-  margin-left: 50px 10px 10px 10px;
+// .add__task {
+//   margin-left: 50px 10px 10px 10px;
+// }
+
+.hide {
+  display: none;
 }
 
-.hide{
-  display:none;
-}
-
-.hovered{
-  background-color:#d1d8e2;
+.hovered {
+  background-color: #d1d8e2;
 }

@@ -1,7 +1,7 @@
 import "./style.less";
-import Controller from "./Controller";
-import View from "./view";
-import Model from "./Model";
+import Controller from "./controller/Controller";
+import View from "./view/View";
+import Model from "./model/Model";
 
 function start() {
       //const view = new View();
