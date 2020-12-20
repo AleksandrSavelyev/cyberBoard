@@ -151,7 +151,6 @@ class View {
          });
     }
 
-   
     createDiv = props => {
         const div = document.createElement('div');
 
